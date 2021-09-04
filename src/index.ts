@@ -9,3 +9,10 @@ function responseJson(data: any): GoogleAppsScript.Content.TextOutput {
     ContentService.MimeType.JSON
   );
 }
+
+function getProperty(key: string, defaultValue?: string): string {
+  const value = PropertiesService.getScriptProperties().getProperty(key);
+  if (value) return value;
+  if (defaultValue) return defaultValue;
+  throw new Error(`Undefined property: ${key}`);
+}
